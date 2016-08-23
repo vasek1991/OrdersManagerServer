@@ -1,0 +1,6 @@
+rootProject.name = 'ordersmanagerserver'
+
+include "ordersmanager-presentation"
+include "ordersmanager-model"
+include "ordersmanager-persistence"
+include "ordersmanager-service"

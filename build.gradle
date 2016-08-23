@@ -1,0 +1,40 @@
+allprojects {
+    apply plugin: 'maven'
+    apply plugin: 'idea'
+
+    group = 'com.metall_a.orders_manager'
+    version = '0.1'
+}
+
+subprojects {
+    ext {
+        guavaVersion = '18.0'
+        slf4jVersion = '1.7.12'
+        log4jVersion = '2.5'
+        junitVersion = '4.12'
+        jerseyVersion = '2.22.1'
+        powerMockVersion = '1.6.4'
+        lombokVersion = '1.16.10'
+    }
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    dependencies {
+        compile 'com.google.guava:guava:' + guavaVersion
+        compile 'org.slf4j:slf4j-api:' + slf4jVersion
+        compile 'org.apache.logging.log4j:log4j-slf4j-impl:' + log4jVersion
+        compile 'org.apache.logging.log4j:log4j-api:' + log4jVersion
+        compile 'org.apache.logging.log4j:log4j-core:' + log4jVersion
+        compile 'org.apache.commons:commons-lang3:3.4'
+        compileOnly "org.projectlombok:lombok:" + lombokVersion
+        testCompile 'junit:junit:' + junitVersion
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
