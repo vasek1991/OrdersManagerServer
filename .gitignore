@@ -1,13 +1,1 @@
 # Created by .ignore support plugin (hsz.mobi)
-.gradle/
-.idea/
-build.gradle
-gradle/
-gradlew
-gradlew.bat
-ordersmanager-model/
-ordersmanager-persistence/
-ordersmanager-presentation/
-ordersmanager-service/
-settings.gradle
-src/
