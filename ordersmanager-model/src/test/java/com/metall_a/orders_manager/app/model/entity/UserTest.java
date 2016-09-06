@@ -1,23 +1,22 @@
 package com.metall_a.orders_manager.app.model.entity;
 
 import com.metall_a.orders_manager.app.model.entity.base.User;
-import org.junit.Before;
+import com.metall_a.orders_manager.app.model.entity.enums.Position;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
 /**
  * Contains unit-tests to check functionality of {@link User} class
- * <p>
- * Created by Vasiliy Kononenko.
+ *
+ * @author Kononenko Vasiliy
  */
 public class UserTest {
-    private User user;
-
-    @Before
+    @Test(expected = NullPointerException.class)
     public void setup() {
-        user = User.builder().id(1).name("Jon").lastName("Morrison").email("jonmorrison@gmail.com")
-                .userName("morrison").password("123456").position(1).build();
+        User user = User.builder().id(1).name("Jon").lastName("Morrison").email("jonmorrison@gmail.com")
+                .userName("morrison").password("123456").position(Position.DIRECTOR).build();
+        assertTrue(false);
     }
 /*
     @Test
@@ -27,8 +26,8 @@ public class UserTest {
         assertTrue(containsStation(user, station));
         assertEquals(user, station.getCity());
     }*/
-
-   /* @Test(expected = NullPointerException.class)
+/*
+    @Test(expected = NullPointerException.class)
     public void testAddStationNullTransportTypeFailure() {
         user.addStation(null);
 

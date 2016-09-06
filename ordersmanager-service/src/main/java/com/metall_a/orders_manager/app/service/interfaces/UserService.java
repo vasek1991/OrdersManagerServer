@@ -1,4 +1,4 @@
-package com.metall_a.orders_manager.app.service;
+package com.metall_a.orders_manager.app.service.interfaces;
 
 import com.metall_a.orders_manager.app.model.entity.base.User;
 
@@ -22,7 +22,7 @@ public interface UserService {
     /**
      * Saves specified user instance
      *
-     * @param user
+     * @param user object
      */
     void saveUser(User user);
 }

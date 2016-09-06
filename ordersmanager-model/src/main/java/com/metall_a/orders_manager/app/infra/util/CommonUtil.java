@@ -15,7 +15,7 @@ public class CommonUtil {
      * Returns not-null unmodifiable copy of the source set
      *
      * @param source any set
-     * @return
+     * @return unmodifiable list of objects
      */
     public static <T> Set<T> getSafeSet(Set<T> source) {
         return Collections.unmodifiableSet(Optional.ofNullable(source).orElse(Collections.emptySet()));
@@ -24,7 +24,7 @@ public class CommonUtil {
     /**
      * Returns not-null unmodifiable copy of the source list
      *
-     * @param source some list
+     * @param source any list
      * @return unmodifiable list of objects
      */
     public static <T> List<T> getSafeList(List<T> source) {

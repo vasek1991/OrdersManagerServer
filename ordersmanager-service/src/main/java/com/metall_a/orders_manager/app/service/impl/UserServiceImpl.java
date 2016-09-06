@@ -2,7 +2,7 @@ package com.metall_a.orders_manager.app.service.impl;
 
 import com.metall_a.orders_manager.app.infra.util.CommonUtil;
 import com.metall_a.orders_manager.app.model.entity.base.User;
-import com.metall_a.orders_manager.app.service.UserService;
+import com.metall_a.orders_manager.app.service.interfaces.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Default implementation of the {@link UserService}
  *
- * @author Morenets
+ * @author Vasiliy Kononenko
  */
 public class UserServiceImpl implements UserService {
     /**

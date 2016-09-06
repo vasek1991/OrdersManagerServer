@@ -1,5 +1,6 @@
 package com.metall_a.orders_manager.app.model.entity.base;
 
+import com.metall_a.orders_manager.app.model.entity.enums.Position;
 import lombok.*;
 
 /**
@@ -30,5 +31,5 @@ public class User {
     private String userName;
     @NonNull
     private String password;
-    private int position;
+    private Position position;
 }
