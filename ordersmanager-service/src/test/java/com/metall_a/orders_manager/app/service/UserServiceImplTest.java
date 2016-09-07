@@ -1,4 +1,4 @@
-package com.metall_a.orders_manager.app;
+package com.metall_a.orders_manager.app.service;
 
 import com.metall_a.orders_manager.app.model.entity.base.User;
 import com.metall_a.orders_manager.app.model.entity.enums.Position;

@@ -1,7 +1,5 @@
 package com.metall_a.orders_manager.app.rest.service;
 
-import com.metall_a.orders_manager.app.model.entity.base.User;
-import com.metall_a.orders_manager.app.model.entity.enums.Position;
 import jersey.repackaged.com.google.common.collect.Lists;
 
 import javax.ws.rs.GET;
@@ -15,15 +13,11 @@ import java.util.List;
  *
  * @author Vasiliy Kononenko
  */
-@Path("cities")
+@Path("users")
 public class UserResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<User> findUsers() {
-        User user = User.builder().id(1).name("Jon").lastName("Morrison").email("jonmorrison@gmail.com")
-                .userName("morrison").phoneNumber("4444").password("123456").position(Position.DIRECTOR).build();
-        User user1 = User.builder().id(1).name("Jon").lastName("Morrison").email("jonmorrison@gmail.com")
-                .userName("morrison").phoneNumber("ddddd").password("123456").position(Position.DIRECTOR).build();
-        return Lists.newArrayList(user, user1);
+    public List<String> findUsers() {
+        return Lists.newArrayList("user1", "user2");
     }
 }
