@@ -1,25 +1,17 @@
 plugins {
-    id "com.bmuschko.tomcat" version "2.2.4"
+    id "org.akhikhl.gretty" version "1.4.0"
 }
 
 apply plugin: 'war'
-apply plugin: 'jetty'
+//apply plugin: 'jetty'
+apply plugin: "org.akhikhl.gretty"
 
 dependencies {
     compile project(':ordersmanager-service')
 }
 
-dependencies {
-    def tomcatVersion = '7.0.67'
-    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
-            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
-            "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
-}
-
-tomcat {
+gretty {
+    port = 8080
     contextPath = '/'
-}
-
-jettyRun {
-    contextPath = ''
+    servletContainer = 'jetty9'//'tomcat8'
 }
