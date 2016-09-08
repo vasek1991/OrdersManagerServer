@@ -1,7 +1,7 @@
 package com.metall_a.orders_manager.app.service;
 
-import com.metall_a.orders_manager.app.model.entity.base.User;
 import com.metall_a.orders_manager.app.model.entity.enums.Position;
+import com.metall_a.orders_manager.app.model.entity.person.Account;
 import com.metall_a.orders_manager.app.service.impl.UserServiceImpl;
 import com.metall_a.orders_manager.app.service.interfaces.UserService;
 import org.junit.Before;
@@ -27,18 +27,31 @@ public class UserServiceImplTest {
 
     @Test
     public void testNoDataReturnedAtStart() {
-        List<User> users = service.findUser();
+        List<Account> users = service.findUser();
         assertTrue(users.isEmpty());
     }
 
     @Test
     public void testSaveNewCitySuccess() {
-        User user = User.builder().id(1).name("Jon").lastName("Morrison").email("jonmorrison@gmail.com")
-                .userName("morrison").phoneNumber("111111").password("123456").position(Position.DIRECTOR).build();
-        service.saveUser(user);
+        Account account = new Account();
+        account.setId(1);
+        account.setName("Jon");
+        account.setLastName("Morrison");
+        account.setEmail("jonmorrison@gmail.com");
+        account.setUserName("morrison");
+        account.setPhoneNumber("111111");
+        account.setPassword("123456");
+        account.setPosition(Position.DIRECTOR);
+        service.saveUser(account);
 
-        List<User> cities = service.findUser();
+        List<Account> cities = service.findUser();
         assertEquals(cities.size(), 1);
         assertEquals(cities.get(0).getName(), "Jon");
+        assertEquals(cities.get(0).getLastName(), "Morrison");
+        assertEquals(cities.get(0).getEmail(), "jonmorrison@gmail.com");
+        assertEquals(cities.get(0).getUserName(), "morrison");
+        assertEquals(cities.get(0).getPhoneNumber(), "111111");
+        assertEquals(cities.get(0).getPassword(), "123456");
+        assertEquals(cities.get(0).getPosition(), Position.DIRECTOR);
     }
 }

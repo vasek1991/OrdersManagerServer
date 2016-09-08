@@ -9,7 +9,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 /**
- * {@link UserResource} is REST web-service that handles user-related requests
+ * {@link UserResource} is REST web-service that handles person-related requests
  *
  * @author Vasiliy Kononenko
  */
