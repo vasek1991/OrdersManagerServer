@@ -1,10 +1,14 @@
 package com.metall_a.orders_manager.app.service.transform.impl;
 
 import com.metall_a.orders_manager.app.infra.util.Checks;
+import com.metall_a.orders_manager.app.infra.util.CommonUtil;
 import com.metall_a.orders_manager.app.infra.util.ReflectionUtil;
 import com.metall_a.orders_manager.app.model.entity.base.AbstractEntity;
 import com.metall_a.orders_manager.app.rest.dto.base.BaseDTO;
 import com.metall_a.orders_manager.app.service.transform.Transformer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * Default transformation engine that uses reflection to transform objects
@@ -12,6 +16,8 @@ import com.metall_a.orders_manager.app.service.transform.Transformer;
  * @author Morenets
  */
 public class SimpleDTOTransformer implements Transformer {
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(SimpleDTOTransformer.class);
 
     @Override
     public <T extends AbstractEntity, P extends BaseDTO<T>> P transform(
@@ -24,6 +30,10 @@ public class SimpleDTOTransformer implements Transformer {
                 ReflectionUtil.findSimilarFields(entity.getClass(), clz));
         dto.transform(entity);
 
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("SimpleDTOTransformer.transform: {} DTO object",
+                    CommonUtil.toString(dto));
+        }
         return dto;
     }
 
@@ -44,6 +54,10 @@ public class SimpleDTOTransformer implements Transformer {
                 ReflectionUtil.findSimilarFields(dto.getClass(), clz));
         dto.untransform(entity);
 
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("SimpleDTOTransformer.transform: {} entity",
+                    CommonUtil.toString(entity));
+        }
         return entity;
     }
 }

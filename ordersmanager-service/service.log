@@ -1,0 +1,2 @@
+16:22:40.998 DEBUG - SimpleDTOTransformer.transform: Account[name=Jon,lastName=Morrison,email=morrison@gmail.com,phoneNumber=0935291647,userName=morrison1991,password=qwerty,position=DIRECTOR,id=1,createdAt=<null>,modifiedAt=<null>,createdBy=<null>,modifiedBy=<null>] entity
+16:22:40.998 DEBUG - SimpleDTOTransformer.transform: AccountDTO[name=Jon,lastName=Morrison,email=morrison@gmail.com,phoneNumber=0935291647,userName=morrison1991,password=qwerty,position=DIRECTOR,id=1] DTO object

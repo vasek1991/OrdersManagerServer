@@ -81,7 +81,6 @@ public class SimpleDTOTransformerTest {
         assertEquals(dto.getUserName(), account.getUserName());
         assertEquals(dto.getPassword(), account.getPassword());
         assertEquals(dto.getPosition(), account.getPosition());
-
     }
 
     @Test(expected = InvalidParameterException.class)
