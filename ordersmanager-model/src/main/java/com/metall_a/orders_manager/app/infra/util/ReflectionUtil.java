@@ -23,8 +23,8 @@ public class ReflectionUtil {
      * Creates an instance of the specified class. This method throws unchecked
      * exception if creation fails
      *
-     * @param clz some class
-     * @return generic type
+     * @param clz some Class
+     * @return Generic type
      * @throws ConfigurationException exception
      */
     public static <T> T createInstance(Class<T> clz)
@@ -40,9 +40,9 @@ public class ReflectionUtil {
      * Returns list of fields with identical names irregardles of their
      * modifiers
      *
-     * @param clz1 some class1
-     * @param clz2 some class2
-     * @return list of strings
+     * @param clz1 some Class1
+     * @param clz2 some Class2
+     * @return List of String
      */
     public static List<String> findSimilarFields(Class<?> clz1, Class<?> clz2)
             throws ConfigurationException {
@@ -67,8 +67,8 @@ public class ReflectionUtil {
     /**
      * Returns all declared fields of the specified classes and all superclasses
      *
-     * @param cls some class
-     * @return list of fields
+     * @param cls some Class
+     * @return List of Fields
      */
     private static List<Field> getFields(Class<?> cls) {
         List<Field> fields = new ArrayList<>();
@@ -82,9 +82,9 @@ public class ReflectionUtil {
     /**
      * Copy specified fields values from source to destination objects
      *
-     * @param src    object src
-     * @param dest   object dest
-     * @param fields list of strings fields
+     * @param src    Object src
+     * @param dest   Object dest
+     * @param fields List of String fields
      */
     public static void copyFields(Object src, Object dest, List<String> fields)
             throws ConfigurationException {
@@ -116,9 +116,9 @@ public class ReflectionUtil {
      * Returns class field by its name. This method supports base classes as
      * well
      *
-     * @param clz  some class
-     * @param name some name of class
-     * @return field
+     * @param clz  some Class
+     * @param name some name of Class
+     * @return Field
      */
     private static <T> Field getField(final Class<T> clz, final String name) {
         Class<?> current = clz;

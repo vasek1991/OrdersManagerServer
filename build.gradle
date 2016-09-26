@@ -8,13 +8,14 @@ allprojects {
 
 subprojects {
     ext {
-        guavaVersion = '18.0'
-        slf4jVersion = '1.7.12'
-        log4jVersion = '2.5'
+        guavaVersion = '19.0'
+        slf4jVersion = '1.7.21'
+        log4jVersion = '2.6.2'
         junitVersion = '4.12'
-        jerseyVersion = '2.22.1'
-        powerMockVersion = '1.6.4'
+        jerseyVersion = '2.23.2'
+        powerMockVersion = '1.6.5'
         lombokVersion = '1.16.10'
+        apacheCommonsVersion = '3.4'
     }
 
     apply plugin: 'java'
@@ -27,7 +28,7 @@ subprojects {
         compile 'org.apache.logging.log4j:log4j-slf4j-impl:' + log4jVersion
         compile 'org.apache.logging.log4j:log4j-api:' + log4jVersion
         compile 'org.apache.logging.log4j:log4j-core:' + log4jVersion
-        compile 'org.apache.commons:commons-lang3:3.4'
+        compile 'org.apache.commons:commons-lang3:' + apacheCommonsVersion
         compileOnly "org.projectlombok:lombok:" + lombokVersion
         testCompile 'junit:junit:' + junitVersion
     }
