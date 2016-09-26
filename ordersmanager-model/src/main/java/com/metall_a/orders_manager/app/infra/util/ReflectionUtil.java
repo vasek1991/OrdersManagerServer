@@ -1,11 +1,14 @@
 package com.metall_a.orders_manager.app.infra.util;
 
 import com.metall_a.orders_manager.app.infra.exeption.ConfigurationException;
+import com.metall_a.orders_manager.app.infra.util.annotation.Ignore;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Contains reflection-related utility operations
@@ -44,17 +47,36 @@ public class ReflectionUtil {
     public static List<String> findSimilarFields(Class<?> clz1, Class<?> clz2)
             throws ConfigurationException {
         try {
-            Field[] fields = clz1.getDeclaredFields();
-            List<String> targetFields = Stream.of(clz2.getDeclaredFields())
+            List<Field> fields = getFields(clz1);
+            List<String> targetFields = getFields(clz2).stream()
+                    .filter(field -> !field.isAnnotationPresent(Ignore.class))
                     .map(Field::getName)
                     .collect(Collectors.toList());
-            return Stream.of(fields)
+            return fields.stream()
+                    .filter(field -> !field.isAnnotationPresent(Ignore.class))
+                    .filter(field -> !Modifier.isStatic(field.getModifiers())
+                            && !Modifier.isFinal(field.getModifiers()))
                     .map(Field::getName)
                     .filter(targetFields::contains)
                     .collect(Collectors.toList());
         } catch (SecurityException ex) {
             throw new ConfigurationException(ex);
         }
+    }
+
+    /**
+     * Returns all declared fields of the specified classes and all superclasses
+     *
+     * @param cls some class
+     * @return list of fields
+     */
+    private static List<Field> getFields(Class<?> cls) {
+        List<Field> fields = new ArrayList<>();
+        while (cls != null) {
+            fields.addAll(Arrays.asList(cls.getDeclaredFields()));
+            cls = cls.getSuperclass();
+        }
+        return fields;
     }
 
     /**
@@ -70,13 +92,13 @@ public class ReflectionUtil {
         Checks.checkParameter(dest != null, "Destination object is not initialized");
         try {
             for (String field : fields) {
-                Field fld = src.getClass().getDeclaredField(field);
+                Field fld = getField(src.getClass(), field);
                 // Skip unknown fields
                 if (fld != null) {
                     fld.setAccessible(true);
                     Object value = fld.get(src);
 
-                    Field fldDest = dest.getClass().getDeclaredField(field);
+                    Field fldDest = getField(dest.getClass(), field);
 
                     if (fldDest != null) {
                         fldDest.setAccessible(true);
@@ -88,5 +110,25 @@ public class ReflectionUtil {
                 | IllegalArgumentException ex) {
             throw new ConfigurationException(ex);
         }
+    }
+
+    /**
+     * Returns class field by its name. This method supports base classes as
+     * well
+     *
+     * @param clz  some class
+     * @param name some name of class
+     * @return field
+     */
+    private static <T> Field getField(final Class<T> clz, final String name) {
+        Class<?> current = clz;
+        while (current != null) {
+            try {
+                return current.getDeclaredField(name);
+            } catch (NoSuchFieldException | SecurityException e) {
+                current = current.getSuperclass();
+            }
+        }
+        throw new ConfigurationException("No field " + name + " in the class " + clz);
     }
 }

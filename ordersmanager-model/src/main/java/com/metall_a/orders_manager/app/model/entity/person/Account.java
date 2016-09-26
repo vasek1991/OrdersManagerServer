@@ -18,10 +18,6 @@ public class Account extends AbstractEntity {
     public Account() {
     }
 
-    public Account(String name) {
-        this.name = name;
-    }
-
     private String name;
     private String lastName;
     private String email;

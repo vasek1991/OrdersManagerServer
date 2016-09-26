@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * Enum with person positions
  *
- * @author Ihor Bilous
+ * @author Kononenko Vasiliy
  */
 @Getter
 public enum Position {

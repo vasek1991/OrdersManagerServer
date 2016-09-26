@@ -2,8 +2,8 @@ package com.metall_a.orders_manager.app.service;
 
 import com.metall_a.orders_manager.app.model.entity.enums.Position;
 import com.metall_a.orders_manager.app.model.entity.person.Account;
-import com.metall_a.orders_manager.app.service.impl.UserServiceImpl;
-import com.metall_a.orders_manager.app.service.interfaces.UserService;
+import com.metall_a.orders_manager.app.service.impl.AccountServiceImpl;
+import com.metall_a.orders_manager.app.service.model_interfaces.AccountService;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,26 +13,27 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Contain unit-tests for {@link UserServiceImpl}
+ * Contain unit-tests for {@link AccountServiceImpl}
  *
  * @author Vasiliy Kononenko
  */
-public class UserServiceImplTest {
-    private UserService service;
+public class AccountServiceImplTest {
+    public static final int DEFAULT_CITY_ID = 1;
+    private AccountService service;
 
     @Before
     public void setup() {
-        service = new UserServiceImpl();
+        service = new AccountServiceImpl();
     }
 
     @Test
     public void testNoDataReturnedAtStart() {
-        List<Account> users = service.findUser();
+        List<Account> users = service.findAccounts();
         assertTrue(users.isEmpty());
     }
 
     @Test
-    public void testSaveNewCitySuccess() {
+    public void testSaveNewAccountSuccess() {
         Account account = new Account();
         account.setId(1);
         account.setName("Jon");
@@ -42,9 +43,9 @@ public class UserServiceImplTest {
         account.setPhoneNumber("111111");
         account.setPassword("123456");
         account.setPosition(Position.DIRECTOR);
-        service.saveUser(account);
+        service.saveAccount(account);
 
-        List<Account> cities = service.findUser();
+        List<Account> cities = service.findAccounts();
         assertEquals(cities.size(), 1);
         assertEquals(cities.get(0).getName(), "Jon");
         assertEquals(cities.get(0).getLastName(), "Morrison");

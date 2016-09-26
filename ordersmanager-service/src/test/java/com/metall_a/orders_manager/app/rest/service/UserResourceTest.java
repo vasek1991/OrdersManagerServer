@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * {@link UserResourceTest} is integration test that verifies
- * {@link UserResource}
+ * {@link AccountResource}
  *
  * @author Kononenko Vasiliy
  */

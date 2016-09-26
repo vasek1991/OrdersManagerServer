@@ -9,12 +9,12 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 /**
- * {@link UserResource} is REST web-service that handles person-related requests
+ * {@link AccountResource} is REST web-service that handles person-related requests
  *
  * @author Vasiliy Kononenko
  */
 @Path("users")
-public class UserResource {
+public class AccountResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<String> findUsers() {

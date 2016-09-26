@@ -27,8 +27,9 @@ public class SimpleDTOTransformerTest {
 
     @Test
     public void testTransformCitySuccess() {
-        Account account = new Account("Jon");
+        Account account = new Account();
         account.setId(1);
+        account.setName("Jon");
         account.setLastName("Morrison");
         account.setPhoneNumber("0935291647");
         account.setEmail("morrison@gmail.com");
@@ -55,7 +56,7 @@ public class SimpleDTOTransformerTest {
 
     @Test(expected = InvalidParameterException.class)
     public void testTransformNullDTOClassFailure() {
-        transformer.transform(new Account("Jon"), null);
+        transformer.transform(new Account(), null);
     }
 
     @Test
