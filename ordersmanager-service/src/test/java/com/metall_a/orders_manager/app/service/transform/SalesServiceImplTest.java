@@ -1,6 +1,7 @@
 package com.metall_a.orders_manager.app.service.transform;
 
 import com.metall_a.orders_manager.app.model.entity.order.SalesForm;
+import com.metall_a.orders_manager.app.persistence.repository.inmemory.InMemorySalesFormRepository;
 import com.metall_a.orders_manager.app.service.impl.SalesFormServiceImpl;
 import com.metall_a.orders_manager.app.service.model_interfaces.SalesFormService;
 import org.junit.Before;
@@ -23,7 +24,7 @@ public class SalesServiceImplTest {
 
     @Before
     public void setup() {
-        service = new SalesFormServiceImpl();
+        service = new SalesFormServiceImpl(new InMemorySalesFormRepository());
     }
 
     @Test

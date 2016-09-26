@@ -2,9 +2,9 @@ package com.metall_a.orders_manager.app.service.impl;
 
 import com.metall_a.orders_manager.app.model.entity.order.SalesForm;
 import com.metall_a.orders_manager.app.persistence.repository.SalesFormRepository;
-import com.metall_a.orders_manager.app.persistence.repository.inmemory.InMemorySalesFormRepository;
 import com.metall_a.orders_manager.app.service.model_interfaces.SalesFormService;
 
+import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,8 +16,9 @@ import java.util.Optional;
 public class SalesFormServiceImpl implements SalesFormService {
     private final SalesFormRepository salesFormRepository;
 
-    public SalesFormServiceImpl() {
-        salesFormRepository = new InMemorySalesFormRepository();
+    @Inject
+    public SalesFormServiceImpl(SalesFormRepository salesFormRepository) {
+        this.salesFormRepository = salesFormRepository;
     }
 
     @Override

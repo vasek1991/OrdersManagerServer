@@ -3,14 +3,16 @@ package com.metall_a.orders_manager.app.rest.service;
 import com.metall_a.orders_manager.app.model.entity.order.SalesForm;
 import com.metall_a.orders_manager.app.rest.dto.SalesFormDTO;
 import com.metall_a.orders_manager.app.rest.service.base.BaseResource;
-import com.metall_a.orders_manager.app.service.impl.SalesFormServiceImpl;
 import com.metall_a.orders_manager.app.service.model_interfaces.SalesFormService;
 import com.metall_a.orders_manager.app.service.transform.Transformer;
-import com.metall_a.orders_manager.app.service.transform.impl.SimpleDTOTransformer;
+import org.apache.commons.lang3.math.NumberUtils;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -30,9 +32,11 @@ public class SalesFormResource extends BaseResource {
      */
     private final Transformer transformer;
 
-    public SalesFormResource() {
-        transformer = new SimpleDTOTransformer();
-        service = new SalesFormServiceImpl();
+    @Inject
+    public SalesFormResource(SalesFormService service, Transformer transformer) {
+        this.transformer = transformer;
+        this.service = service;
+
         SalesForm salesForm = new SalesForm();
         salesForm.setMaterialsNote("ffff");
         salesForm.setCustomerNote("aaaa");
@@ -44,7 +48,7 @@ public class SalesFormResource extends BaseResource {
     /**
      * Returns all the existing cities
      *
-     * @return
+     * @return fff
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -54,9 +58,7 @@ public class SalesFormResource extends BaseResource {
     }
 
     /**
-     * Saves new city instance
-     *
-     * @return fff ddd
+     * Saves new sales form instance
      */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -64,22 +66,23 @@ public class SalesFormResource extends BaseResource {
         service.saveSalesForm(transformer.untransform(salesFormDTO, SalesForm.class));
     }
 
-    /*@Path("/{cityId}")
+    /**
+     * Returns sales form with specified identifier
+     *
+     * @return ff
+     */
+    @Path("/{salesFormId}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    *//**
-     * Returns city with specified identifier
-     * @return
-     *//*
-    public Response findCityById(@PathParam("cityId") final String cityId) {
+    public Response findCityById(@PathParam("salesFormId") final String cityId) {
         if (!NumberUtils.isNumber(cityId)) {
             return BAD_REQUEST;
         }
 
-        Optional<City> city = service.findCitiyById(NumberUtils.toInt(cityId));
-        if (!city.isPresent()) {
+        Optional<SalesForm> salesForm = service.findSalesFormById(NumberUtils.toInt(cityId));
+        if (!salesForm.isPresent()) {
             return NOT_FOUND;
         }
-        return ok(transformer.transform(city.get(), CityDTO.class));
-    }*/
+        return ok(transformer.transform(salesForm.get(), SalesFormDTO.class));
+    }
 }

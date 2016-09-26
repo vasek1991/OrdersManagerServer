@@ -19,7 +19,7 @@ import static org.junit.Assert.assertEquals;
  * {@link SalesFormResourceTest} is integration test that verifies
  * {@link SalesFormResource}
  *
- * @author Morenets
+ * @author Kononenko Vasiliy
  */
 public class SalesFormResourceTest extends JerseyTest {
     @Override
@@ -39,27 +39,29 @@ public class SalesFormResourceTest extends JerseyTest {
         assertEquals(salesForm.get("paintingOperationNote"), "bbbb");
     }
 
-   /* @Test
+    @Test
     public void testFindSalesFormByIdSuccess() {
-        CityDTO city = target("cities/1").request().get(CityDTO.class);
-        assertNotNull(city);
-        assertEquals(city.getId(), 1);
-        assertEquals(city.getName(), "Odessa");
-    }*/
+        SalesFormDTO salesForm = target("sales-forms/1").request().get(SalesFormDTO.class);
+        assertNotNull(salesForm);
+        assertEquals(salesForm.getId(), 1);
+        assertEquals(salesForm.getMaterialsNote(), "ffff");
+        assertEquals(salesForm.getCustomerNote(), "aaaa");
+        assertEquals(salesForm.getPaintingOperationNote(), "bbbb");
+    }
 
-    /*@Test
+    @Test
     public void testFindSalesFormByIdNotFound() {
-        Response response = target("cities/2").request().get(Response.class);
+        Response response = target("sales-forms/2").request().get(Response.class);
         assertNotNull(response);
         assertEquals(response.getStatus(), Response.Status.NOT_FOUND.getStatusCode());
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void testFindCityByIdInvalidId() {
-        Response response = target("cities/aaab").request().get(Response.class);
+        Response response = target("sales-forms/aaab").request().get(Response.class);
         assertNotNull(response);
         assertEquals(response.getStatus(), Response.Status.BAD_REQUEST.getStatusCode());
-    }*/
+    }
 
     @Test
     public void testSaveCitySuccess() {

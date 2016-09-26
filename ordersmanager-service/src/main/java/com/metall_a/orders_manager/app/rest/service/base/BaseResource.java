@@ -19,7 +19,7 @@ public abstract class BaseResource {
      */
     protected final Response BAD_REQUEST;
 
-    public BaseResource() {
+    protected BaseResource() {
         NOT_FOUND = Response.status(Response.Status.NOT_FOUND).build();
         BAD_REQUEST = Response.status(Response.Status.BAD_REQUEST).build();
     }
