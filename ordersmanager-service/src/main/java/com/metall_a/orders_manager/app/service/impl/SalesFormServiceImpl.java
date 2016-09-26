@@ -1,11 +1,12 @@
 package com.metall_a.orders_manager.app.service.impl;
 
-import com.metall_a.orders_manager.app.infra.util.CommonUtil;
 import com.metall_a.orders_manager.app.model.entity.order.SalesForm;
+import com.metall_a.orders_manager.app.persistence.repository.SalesFormRepository;
+import com.metall_a.orders_manager.app.persistence.repository.inmemory.InMemorySalesFormRepository;
 import com.metall_a.orders_manager.app.service.model_interfaces.SalesFormService;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Default implementation of the {@link SalesForm}
@@ -13,39 +14,29 @@ import java.util.List;
  * @author Vasiliy Kononenko
  */
 public class SalesFormServiceImpl implements SalesFormService {
-    /**
-     * Internal list of salesForms
-     */
-    private final List<SalesForm> salesForms;
-    /**
-     * Auto-increment counter for entity id generation
-     */
-    private int counter = 0;
+    private final SalesFormRepository salesFormRepository;
 
     public SalesFormServiceImpl() {
-        salesForms = new ArrayList<>();
+        salesFormRepository = new InMemorySalesFormRepository();
     }
 
     @Override
     public List<SalesForm> findSalesForms() {
-        return CommonUtil.getSafeList(salesForms);
+        return salesFormRepository.findAll();
+    }
+
+    @Override
+    public Optional<SalesForm> findSalesFormById(int id) {
+        return Optional.ofNullable(salesFormRepository.findById(id));
     }
 
     @Override
     public void saveSalesForm(SalesForm salesForm) {
-        if (!salesForms.contains(salesForm)) {
-            salesForm.setId(++counter);
-            salesForms.add(salesForm);
-        }
+        salesFormRepository.save(salesForm);
     }
 
     @Override
     public void deleteSalesForm(int id) {
-
-    }
-
-    @Override
-    public void updateSalesForm(SalesForm salesForm) {
 
     }
 }

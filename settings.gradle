@@ -4,3 +4,9 @@ include "ordersmanager-presentation"
 include "ordersmanager-model"
 include "ordersmanager-persistence"
 include "ordersmanager-service"
+
+
+project(':ordersmanager-presentation').projectDir = "$rootDir/ordersmanager-presentation" as File
+project(':ordersmanager-model').projectDir = "$rootDir/ordersmanager-model" as File
+project(':ordersmanager-persistence').projectDir = "$rootDir/ordersmanager-persistence" as File
+project(':ordersmanager-service').projectDir = "$rootDir/ordersmanager-service" as File

@@ -40,7 +40,7 @@ public class SalesFormResourceTest extends JerseyTest {
     }
 
    /* @Test
-    public void testFindCityByIdSuccess() {
+    public void testFindSalesFormByIdSuccess() {
         CityDTO city = target("cities/1").request().get(CityDTO.class);
         assertNotNull(city);
         assertEquals(city.getId(), 1);
@@ -48,7 +48,7 @@ public class SalesFormResourceTest extends JerseyTest {
     }*/
 
     /*@Test
-    public void testFindCityByIdNotFound() {
+    public void testFindSalesFormByIdNotFound() {
         Response response = target("cities/2").request().get(Response.class);
         assertNotNull(response);
         assertEquals(response.getStatus(), Response.Status.NOT_FOUND.getStatusCode());

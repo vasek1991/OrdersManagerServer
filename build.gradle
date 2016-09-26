@@ -16,6 +16,7 @@ subprojects {
         powerMockVersion = '1.6.5'
         lombokVersion = '1.16.10'
         apacheCommonsVersion = '3.4'
+        hibernateVersion = '5.2.2.Final'
     }
 
     apply plugin: 'java'
