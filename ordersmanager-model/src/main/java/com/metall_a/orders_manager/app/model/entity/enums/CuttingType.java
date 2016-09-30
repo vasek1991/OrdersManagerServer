@@ -5,6 +5,6 @@ package com.metall_a.orders_manager.app.model.entity.enums;
  *
  * @author Kononenko Vasiliy
  */
-public enum Materials {
-    INCLUDED_IN_PRICE, CUSTOMER
+public enum CuttingType {
+    GUILLOTINE, PUNCHING, LASER
 }

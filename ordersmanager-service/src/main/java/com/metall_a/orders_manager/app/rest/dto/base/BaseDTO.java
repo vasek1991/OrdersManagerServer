@@ -15,7 +15,7 @@ public abstract class BaseDTO<T extends AbstractEntity> {
     /**
      * Unique entity identifier
      */
-    private int id;
+    private long id;
 
     /**
      * Should be overridden in the derived classes if additional transformation

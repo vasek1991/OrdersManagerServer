@@ -2,19 +2,19 @@ package com.metall_a.orders_manager.app.rest.dto;
 
 import com.metall_a.orders_manager.app.model.entity.enums.Materials;
 import com.metall_a.orders_manager.app.model.entity.enums.MetalCutting;
-import com.metall_a.orders_manager.app.model.entity.order.SalesForm;
+import com.metall_a.orders_manager.app.model.entity.order.PurchaseRequest;
 import com.metall_a.orders_manager.app.rest.dto.base.BaseDTO;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Holds person state for the client-server communication
+ * Holds PurchaseRequest state for the client-server communication
  *
  * @author Vasiliy Kononenko
  */
 @Getter
 @Setter
-public class SalesFormDTO extends BaseDTO<SalesForm> {
+public class PurchaseRequestDTO extends BaseDTO<PurchaseRequest> {
     private String customerNote;
     private Materials materials;
     private String materialsNote;
