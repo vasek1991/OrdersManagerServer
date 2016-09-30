@@ -6,7 +6,7 @@ import javax.ws.rs.core.FeatureContext;
 /**
  * Registers DI bindings
  *
- * @author Morenets
+ * @author Kononenko Vasiliy
  */
 public class ComponentFeature implements Feature {
 

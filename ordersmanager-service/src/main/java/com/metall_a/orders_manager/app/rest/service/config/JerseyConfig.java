@@ -8,7 +8,7 @@ import javax.ws.rs.ApplicationPath;
 /**
  * REST web-service configuration for Jersey
  *
- * @author Vasiliy Kononenko
+ * @author Kononenko Vasiliy
  */
 @ApplicationPath("api")
 public class JerseyConfig extends ResourceConfig {

@@ -14,20 +14,20 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(callSuper = true, exclude = {"price", "quantity"})
+@EqualsAndHashCode(callSuper = true, of = "name"/*exclude = {"price", "quantity"}*/)
 @NoArgsConstructor
 @Table(name = "PURCHASE")
 @Entity
 public class Purchase extends AbstractEntity {
+    @ManyToOne(cascade = {}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "TECHNICAL_CALCULATION_ID")
+    private TechnicalCalculation technicalCalculation;
     @Column(name = "NAME", length = 10)
     private String name;
     @Column(name = "QUANTITY")
     private int quantity;
     @Column(name = "PRICE", precision = 10, scale = 3)
     private double price;
-    @ManyToOne(cascade = {}, fetch = FetchType.EAGER)
-    @JoinColumn(name = "TECHNICAL_CALCULATION_ID")
-    private TechnicalCalculation technicalCalculation;
 
     /**
      * You shouldn't create purchase object directly. Use
