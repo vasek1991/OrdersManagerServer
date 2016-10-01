@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(doNotUseGetters = true, of = {"id"})
 @MappedSuperclass
 public abstract class AbstractEntity {
+    public static final String FIELD_CREATED_AT = "createdAt";
     /**
      * Unique entity identifier
      */
@@ -49,4 +50,11 @@ public abstract class AbstractEntity {
     @OneToOne(fetch = FetchType.LAZY, cascade = {})
     @JoinColumn(name = "MODIFIED_BY", insertable = false)
     private Account modifiedBy;
+
+    @PrePersist
+    public void prePersist() {
+        if (getId() == 0) {
+            setCreatedAt(LocalDateTime.now());
+        }
+    }
 }

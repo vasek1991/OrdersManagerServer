@@ -21,17 +21,17 @@ public interface OrderRepository {
      * Returns Order with specified identifier. If no Order exists with such identifier
      * then null is returned
      *
-     * @param orderId int
+     * @param orderId long
      * @return Order
      */
-    Order findById(int orderId);
+    Order findById(long orderId);
 
     /**
      * Delete Order with specified identifier
      *
-     * @param orderId int
+     * @param orderId long
      */
-    void delete(int orderId);
+    void delete(long orderId);
 
     /**
      * Returns all the Orders

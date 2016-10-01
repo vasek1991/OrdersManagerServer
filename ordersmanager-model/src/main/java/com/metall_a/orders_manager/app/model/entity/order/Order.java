@@ -18,7 +18,7 @@ import javax.persistence.*;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-@Table(name = "ORDER")
+@Table(name = "ORDERS")
 @Entity
 public class Order extends AbstractEntity {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

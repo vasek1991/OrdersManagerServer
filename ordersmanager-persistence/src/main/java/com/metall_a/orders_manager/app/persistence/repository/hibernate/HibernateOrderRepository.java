@@ -20,23 +20,22 @@ public class HibernateOrderRepository implements OrderRepository {
 
     @Override
     public void save(Order order) {
-
         try (Session session = sessionFactory.openSession()) {
             session.saveOrUpdate(order);
         }
     }
 
     @Override
-    public Order findById(int cityId) {
+    public Order findById(long orderId) {
         try (Session session = sessionFactory.openSession()) {
-            return session.get(Order.class, cityId);
+            return session.get(Order.class, orderId);
         }
     }
 
     @Override
-    public void delete(int cityId) {
+    public void delete(long orderId) {
         try (Session session = sessionFactory.openSession()) {
-            Order order = session.get(Order.class, cityId);
+            Order order = session.get(Order.class, orderId);
             if (order != null) {
                 session.delete(order);
             }

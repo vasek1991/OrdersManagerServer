@@ -1,7 +1,10 @@
 package com.metall_a.orders_manager.app.rest.service;
 
+import com.metall_a.orders_manager.app.model.entity.enums.Materials;
+import com.metall_a.orders_manager.app.model.entity.enums.MetalCutting;
 import com.metall_a.orders_manager.app.model.entity.enums.State;
 import com.metall_a.orders_manager.app.model.entity.order.Order;
+import com.metall_a.orders_manager.app.model.entity.order.PurchaseRequest;
 import com.metall_a.orders_manager.app.rest.dto.OrderDTO;
 import com.metall_a.orders_manager.app.rest.service.base.BaseResource;
 import com.metall_a.orders_manager.app.service.model_interfaces.OrderService;
@@ -39,7 +42,13 @@ public class OrderResource extends BaseResource {
         this.service = service;
 
         Order order = new Order();
+        PurchaseRequest purchaseRequest = new PurchaseRequest();
+        purchaseRequest.setCustomerName("fff");
+        purchaseRequest.setMaterials(Materials.INCLUDED_IN_PRICE);
+        purchaseRequest.setCustomerPhoneNumber("11111");
+        purchaseRequest.setMetalCutting(MetalCutting.LASER_CUTTING);
         order.setState(State.OPEN);
+        order.setPurchaseRequest(purchaseRequest);
         service.saveOrder(order);
     }
 

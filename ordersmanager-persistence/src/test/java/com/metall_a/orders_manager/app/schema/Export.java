@@ -1,15 +1,14 @@
 package com.metall_a.orders_manager.app.schema;
 
-import com.google.common.collect.Sets;
-import com.metall_a.orders_manager.app.model.entity.order.*;
-import com.metall_a.orders_manager.app.model.entity.person.Account;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.dialect.Dialect;
 import org.hibernate.dialect.MySQL5Dialect;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.hibernate.tool.schema.TargetType;
+import org.reflections.Reflections;
 
+import javax.persistence.Entity;
 import java.util.EnumSet;
 import java.util.Set;
 
@@ -30,8 +29,8 @@ public class Export {
         MetadataSources metadata = new MetadataSources(
                 new StandardServiceRegistryBuilder().applySetting("hibernate.dialect", dialect.getName()).build());
 
-        Set<Class<?>> entityClasses = Sets.newHashSet(Account.class, Customer.class, Material.class, Order.class,
-                Purchase.class, PurchaseRequest.class, TechnicalCalculation.class);
+        Reflections reflections = new Reflections("com.metall_a.orders_manager.app.model.entity");
+        Set<Class<?>> entityClasses = reflections.getTypesAnnotatedWith(Entity.class);
         entityClasses.forEach(metadata::addAnnotatedClass);
 
         SchemaExport schema = new SchemaExport();
@@ -44,5 +43,4 @@ public class Export {
     public static void main(String[] args) {
         exportDatabase("", MySQL5Dialect.class);
     }
-
 }

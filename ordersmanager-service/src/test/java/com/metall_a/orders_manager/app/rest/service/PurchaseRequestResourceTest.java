@@ -30,7 +30,7 @@ public class PurchaseRequestResourceTest extends JerseyTest {
     @Test
     @SuppressWarnings("unchecked")
     public void testFindPurchaseRequestSuccess() {
-        List<Map<String, String>> purchaseRequests = target("purchase-request").request().get(List.class);
+        List<Map<String, String>> purchaseRequests = target("purchase-requests").request().get(List.class);
         assertNotNull(purchaseRequests);
         assertEquals(purchaseRequests.size(), 1);
 
@@ -42,7 +42,7 @@ public class PurchaseRequestResourceTest extends JerseyTest {
 
     @Test
     public void testFindPurchaseRequestByIdSuccess() {
-        PurchaseRequestDTO purchaseRequest = target("purchase-request/1").request().get(PurchaseRequestDTO.class);
+        PurchaseRequestDTO purchaseRequest = target("purchase-requests/1").request().get(PurchaseRequestDTO.class);
         assertNotNull(purchaseRequest);
         assertEquals(purchaseRequest.getId(), 1);
         assertEquals(purchaseRequest.getMaterialsNote(), "ffff");
@@ -52,14 +52,14 @@ public class PurchaseRequestResourceTest extends JerseyTest {
 
     @Test
     public void testFindPurchaseRequestByIdNotFound() {
-        Response response = target("purchase-request/2").request().get(Response.class);
+        Response response = target("purchase-requests/2").request().get(Response.class);
         assertNotNull(response);
         assertEquals(response.getStatus(), Response.Status.NOT_FOUND.getStatusCode());
     }
 
     @Test
     public void testFindPurchaseRequestByIdInvalidId() {
-        Response response = target("purchase-request/aaab").request().get(Response.class);
+        Response response = target("purchase-requests/aaab").request().get(Response.class);
         assertNotNull(response);
         assertEquals(response.getStatus(), Response.Status.BAD_REQUEST.getStatusCode());
     }
@@ -68,7 +68,7 @@ public class PurchaseRequestResourceTest extends JerseyTest {
     public void testSavePurchaseRequestSuccess() {
         PurchaseRequestDTO purchaseRequestDTO = new PurchaseRequestDTO();
         purchaseRequestDTO.setMaterialsNote("gggg");
-        Response response = target("purchase-request").request().post(Entity.entity(purchaseRequestDTO, MediaType.APPLICATION_JSON));
+        Response response = target("purchase-requests").request().post(Entity.entity(purchaseRequestDTO, MediaType.APPLICATION_JSON));
         assertEquals(response.getStatus(), Response.Status.NO_CONTENT.getStatusCode());
     }
 }

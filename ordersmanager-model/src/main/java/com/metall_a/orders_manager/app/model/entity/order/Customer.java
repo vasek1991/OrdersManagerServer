@@ -24,7 +24,7 @@ import javax.persistence.Table;
 public class Customer extends AbstractEntity {
     @Column(name = "NAME", nullable = false, unique = true, length = 50)
     private String name;
-    @Column(name = "NAME", nullable = false, length = 50)
+    @Column(name = "PHONE_NUMBER", nullable = false, length = 50)
     private String phoneNumber;
 
     @Override

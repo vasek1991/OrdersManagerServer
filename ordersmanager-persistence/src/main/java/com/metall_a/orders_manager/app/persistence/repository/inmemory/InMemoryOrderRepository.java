@@ -29,7 +29,7 @@ public class InMemoryOrderRepository implements OrderRepository {
     }
 
     @Override
-    public void delete(final int purchaseRequestId) {
+    public void delete(final long purchaseRequestId) {
     }
 
     @Override
@@ -46,7 +46,7 @@ public class InMemoryOrderRepository implements OrderRepository {
     }
 
     @Override
-    public Order findById(final int orderId) {
+    public Order findById(final long orderId) {
         return orders.stream()
                 .filter(salesForm -> salesForm.getId() == orderId)
                 .findFirst()
