@@ -17,6 +17,9 @@ subprojects {
         lombokVersion = '1.16.10'
         apacheCommonsVersion = '3.4'
         hibernateVersion = '5.2.2.Final'
+        hibernateTools = '5.0.2.Final'
+        javaxInject = '2.5.0-b18'
+        reflections = '0.9.10'
     }
 
     apply plugin: 'java'

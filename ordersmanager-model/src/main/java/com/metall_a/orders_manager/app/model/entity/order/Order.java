@@ -2,10 +2,7 @@ package com.metall_a.orders_manager.app.model.entity.order;
 
 import com.metall_a.orders_manager.app.model.entity.base.AbstractEntity;
 import com.metall_a.orders_manager.app.model.entity.enums.State;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -16,6 +13,7 @@ import javax.persistence.*;
  */
 @Getter
 @Setter
+@ToString
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @Table(name = "ORDERS")

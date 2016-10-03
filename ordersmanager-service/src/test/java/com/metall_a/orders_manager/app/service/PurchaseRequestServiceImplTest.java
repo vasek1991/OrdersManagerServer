@@ -1,4 +1,4 @@
-package com.metall_a.orders_manager.app.service.transform;
+package com.metall_a.orders_manager.app.service;
 
 import com.metall_a.orders_manager.app.model.entity.order.PurchaseRequest;
 import com.metall_a.orders_manager.app.persistence.repository.inmemory.InMemoryPurchaseRequestRepository;
