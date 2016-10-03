@@ -5,6 +5,7 @@ import com.metall_a.orders_manager.app.model.entity.enums.State;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * That class contains all information about order
@@ -19,6 +20,7 @@ import javax.persistence.*;
 @Table(name = "ORDERS")
 @Entity
 public class Order extends AbstractEntity {
+    @NotNull
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "purchase_Request_ID")
     private PurchaseRequest purchaseRequest;

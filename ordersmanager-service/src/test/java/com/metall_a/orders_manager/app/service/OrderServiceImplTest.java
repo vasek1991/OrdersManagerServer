@@ -69,8 +69,7 @@ public class OrderServiceImplTest {
 
     @Test
     public void testFindOrderByIdSuccess() {
-        Order order = new Order();
-        order.setState(State.OPEN);
+        Order order = createOrder();
         service.saveOrder(order);
 
         Optional<Order> foundOrder = service.findOrderById(DEFAULT_ORDER_ID);

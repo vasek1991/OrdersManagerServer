@@ -6,6 +6,8 @@ import com.metall_a.orders_manager.app.model.entity.enums.MetalCutting;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Class that stores some initial information about order
@@ -20,12 +22,17 @@ import javax.persistence.*;
 @Table(name = "PURCHASE_REQUEST")
 @Entity
 public class PurchaseRequest extends AbstractEntity {
+    @NotNull
+    @Size(min = 2, max = 30)
     @Column(name = "CUSTOMER_NAME", length = 30)
     private String customerName;
+    @NotNull
+    @Size(min = 2, max = 50)
     @Column(name = "CUSTOMER_PHONE_NUMBER", length = 15)
     private String customerPhoneNumber;
     @Column(name = "CUSTOMER_NOTE", length = 250)
     private String customerNote;
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, name = "MATERIALS")
     private Materials materials;
@@ -37,6 +44,7 @@ public class PurchaseRequest extends AbstractEntity {
     private boolean dxfFiles;
     @Column(name = "DRAWINGS_NOTE", length = 250)
     private String drawingsNote;
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, name = "METAL_CUTTING")
     private MetalCutting metalCutting;

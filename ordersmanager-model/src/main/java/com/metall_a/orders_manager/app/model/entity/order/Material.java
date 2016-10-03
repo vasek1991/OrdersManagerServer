@@ -9,6 +9,7 @@ import lombok.ToString;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  * Material information
@@ -22,6 +23,7 @@ import javax.persistence.Table;
 @Table(name = "MATERIAL")
 @Entity
 public class Material extends AbstractEntity {
+    @Size(min = 2, max = 50)
     @Column(name = "NAME", nullable = false, unique = true, length = 50)
     private String name;
 
