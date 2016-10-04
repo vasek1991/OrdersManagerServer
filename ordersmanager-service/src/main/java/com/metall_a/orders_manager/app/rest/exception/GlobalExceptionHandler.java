@@ -18,7 +18,7 @@ public class GlobalExceptionHandler implements ExceptionMapper<Exception> {
 
     private final Response SERVER_ERROR;
 
-    public GlobalExceptionHandler() {
+    GlobalExceptionHandler() {
         SERVER_ERROR = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
     }
 

@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
  * Verifies that {@link GlobalExceptionHandler} correctly handles application
  * exceptions
  *
- * @author Kononenko Vailiy
+ * @author Kononenko Vasiliy
  */
 public class GlobalExceptionHandlerTest {
     /**

@@ -1,6 +1,7 @@
 package com.metall_a.orders_manager.app.service;
 
 
+import com.metall_a.orders_manager.app.infra.exeption.flow.ValidationException;
 import com.metall_a.orders_manager.app.model.entity.enums.Materials;
 import com.metall_a.orders_manager.app.model.entity.enums.MetalCutting;
 import com.metall_a.orders_manager.app.model.entity.enums.State;
@@ -10,7 +11,7 @@ import com.metall_a.orders_manager.app.persistence.hibernate.SessionFactoryBuild
 import com.metall_a.orders_manager.app.persistence.repository.OrderRepository;
 import com.metall_a.orders_manager.app.persistence.repository.hibernate.HibernateOrderRepository;
 import com.metall_a.orders_manager.app.service.impl.OrderServiceImpl;
-import com.metall_a.orders_manager.app.service.model_interfaces.OrderService;
+import com.metall_a.orders_manager.app.service.service_interfaces.OrderService;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +35,6 @@ public class OrderServiceImplTest {
 
     private OrderService service;
     private static ExecutorService executorService;
-
 
     @Before
     public void setup() {
@@ -164,5 +164,45 @@ public class OrderServiceImplTest {
         order.setState(State.OPEN);
         order.setPurchaseRequest(purchaseRequest);
         return order;
+    }
+
+    @Test
+    public void testSaveOrderMissingPurchaseRequestValidationExceptionThrown() {
+        try {
+            Order order = new Order();
+            order.setState(State.OPEN);
+            service.saveOrder(order);
+            fail("Purchase request validation failed");
+        } catch (ValidationException ex) {
+            assertTrue(ex.getMessage().contains("purchaseRequest:may not be null"));
+        }
+    }
+
+    @Test
+    public void testSaveOrdersPurchaseRequestCustomerNameTooShortValidationExceptionThrown() {
+        try {
+            Order order = createOrder();
+            order.getPurchaseRequest().setCustomerName("N");
+            service.saveOrder(order);
+            fail("Orders purchase request customer name validation failed");
+        } catch (ValidationException ex) {
+            System.out.println(ex.getMessage());
+            assertTrue(ex.getMessage().contains("purchaseRequest.customerName:size must be between 2 and 30"));
+        }
+    }
+
+    @Test
+    public void testSaveOrdersPurchaseRequestCustomerNameTooLongValidationExceptionThrown() {
+        try {
+            Order order = createOrder();
+            order.getPurchaseRequest().setCustomerName("NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN" +
+                    "NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
+            service.saveOrder(order);
+
+            fail("Orders purchase request customer name validation failed");
+        } catch (ValidationException ex) {
+            System.out.println(ex.getMessage());
+            assertTrue(ex.getMessage().contains("purchaseRequest.customerName:size must be between 2 and 30"));
+        }
     }
 }

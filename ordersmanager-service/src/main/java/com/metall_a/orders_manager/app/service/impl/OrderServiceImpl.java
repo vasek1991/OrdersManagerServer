@@ -3,7 +3,7 @@ package com.metall_a.orders_manager.app.service.impl;
 import com.metall_a.orders_manager.app.infra.exeption.flow.ValidationException;
 import com.metall_a.orders_manager.app.model.entity.order.Order;
 import com.metall_a.orders_manager.app.persistence.repository.OrderRepository;
-import com.metall_a.orders_manager.app.service.model_interfaces.OrderService;
+import com.metall_a.orders_manager.app.service.service_interfaces.OrderService;
 
 import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
@@ -28,7 +28,6 @@ public class OrderServiceImpl implements OrderService {
         this.orderRepository = orderRepository;
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
-
     }
 
     @Override

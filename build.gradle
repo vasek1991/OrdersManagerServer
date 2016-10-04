@@ -21,7 +21,7 @@ subprojects {
         javaxInject = '2.5.0-b18'
         reflections = '0.9.10'
         hibernateValidator = '5.2.4.Final'
-        elVersion = '3.0.0'
+        elVersion = '2.2.4'
     }
 
     apply plugin: 'java'

@@ -3,7 +3,7 @@ package com.metall_a.orders_manager.app.service;
 import com.metall_a.orders_manager.app.model.entity.order.PurchaseRequest;
 import com.metall_a.orders_manager.app.persistence.repository.inmemory.InMemoryPurchaseRequestRepository;
 import com.metall_a.orders_manager.app.service.impl.PurchaseRequestServiceImpl;
-import com.metall_a.orders_manager.app.service.model_interfaces.PurchaseRequestService;
+import com.metall_a.orders_manager.app.service.service_interfaces.PurchaseRequestService;
 import org.junit.Before;
 import org.junit.Test;
 

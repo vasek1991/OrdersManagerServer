@@ -1,4 +1,4 @@
-package com.metall_a.orders_manager.app.service.model_interfaces;
+package com.metall_a.orders_manager.app.service.service_interfaces;
 
 import com.metall_a.orders_manager.app.model.entity.order.PurchaseRequest;
 

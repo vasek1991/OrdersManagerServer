@@ -7,8 +7,8 @@ import com.metall_a.orders_manager.app.persistence.repository.hibernate.Hibernat
 import com.metall_a.orders_manager.app.persistence.repository.inmemory.InMemoryPurchaseRequestRepository;
 import com.metall_a.orders_manager.app.service.impl.OrderServiceImpl;
 import com.metall_a.orders_manager.app.service.impl.PurchaseRequestServiceImpl;
-import com.metall_a.orders_manager.app.service.model_interfaces.OrderService;
-import com.metall_a.orders_manager.app.service.model_interfaces.PurchaseRequestService;
+import com.metall_a.orders_manager.app.service.service_interfaces.OrderService;
+import com.metall_a.orders_manager.app.service.service_interfaces.PurchaseRequestService;
 import com.metall_a.orders_manager.app.service.transform.Transformer;
 import com.metall_a.orders_manager.app.service.transform.impl.SimpleDTOTransformer;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
