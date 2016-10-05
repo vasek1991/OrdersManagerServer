@@ -21,7 +21,12 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @Table(name = "PURCHASE_REQUEST")
 @Entity
+@NamedQueries(
+        @NamedQuery(name = PurchaseRequest.QUERY_DELETE_ALL, query = "delete from PurchaseRequest")
+)
 public class PurchaseRequest extends AbstractEntity {
+    public static final String QUERY_DELETE_ALL = "deletePurchaseRequests";
+
     @NotNull
     @Size(min = 2, max = 30)
     @Column(name = "CUSTOMER_NAME", length = 30)

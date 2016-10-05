@@ -38,6 +38,11 @@ public class InMemoryOrderRepository implements OrderRepository {
     }
 
     @Override
+    public void deleteAll() {
+        orders.clear();
+    }
+
+    @Override
     public void save(final Order order) {
         if (!orders.contains(order)) {
             order.setId(++counter);

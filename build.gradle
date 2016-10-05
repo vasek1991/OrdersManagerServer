@@ -22,6 +22,9 @@ subprojects {
         reflections = '0.9.10'
         hibernateValidator = '5.2.4.Final'
         elVersion = '2.2.4'
+        h2database = '1.4.192'
+        //mysqlConnector = '6.0.4'
+        mysqlConnector = '5.1.39'
     }
 
     apply plugin: 'java'

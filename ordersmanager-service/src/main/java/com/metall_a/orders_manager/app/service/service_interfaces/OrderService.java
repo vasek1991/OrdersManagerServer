@@ -41,4 +41,9 @@ public interface OrderService {
      * @param id int
      */
     void deleteOrder(int id);
+
+    /**
+     * Removes all the Orders
+     */
+    void deleteOrders();
 }

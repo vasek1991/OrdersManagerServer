@@ -39,4 +39,9 @@ public interface OrderRepository {
      * @return List of Orders
      */
     List<Order> findAll();
+
+    /**
+     * Deletes all the orders
+     */
+    void deleteAll();
 }
