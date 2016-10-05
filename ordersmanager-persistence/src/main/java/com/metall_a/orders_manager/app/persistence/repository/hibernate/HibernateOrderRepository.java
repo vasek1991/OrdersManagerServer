@@ -75,11 +75,11 @@ public class HibernateOrderRepository implements OrderRepository {
             try {
                 tx = session.beginTransaction();
 
-                Query query = session.createQuery(Order.QUERY_DELETE_ALL);
+                Query query = session.createNamedQuery(Order.QUERY_DELETE_ALL);
                 query.executeUpdate();
                 int deleted = query.executeUpdate();
 
-                Query purchaseRequestQuery = session.createQuery(PurchaseRequest.QUERY_DELETE_ALL);
+                Query purchaseRequestQuery = session.createNamedQuery(PurchaseRequest.QUERY_DELETE_ALL);
                 purchaseRequestQuery.executeUpdate();
 
                 LOGGER.debug("Deleted {} orders", deleted);

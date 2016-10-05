@@ -187,7 +187,6 @@ public class OrderServiceImplTest {
             service.saveOrder(order);
             fail("Orders purchase request customer name validation failed");
         } catch (ValidationException ex) {
-            System.out.println(ex.getMessage());
             assertTrue(ex.getMessage().contains("purchaseRequest.customerName:size must be between 2 and 30"));
         }
     }
@@ -202,7 +201,6 @@ public class OrderServiceImplTest {
 
             fail("Orders purchase request customer name validation failed");
         } catch (ValidationException ex) {
-            System.out.println(ex.getMessage());
             assertTrue(ex.getMessage().contains("purchaseRequest.customerName:size must be between 2 and 30"));
         }
     }

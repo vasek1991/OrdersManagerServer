@@ -20,9 +20,9 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Table(name = "ORDERS")
 @Entity
-@NamedQueries(
+@NamedQueries({
         @NamedQuery(name = Order.QUERY_DELETE_ALL, query = "delete from Order")
-)
+})
 public class Order extends AbstractEntity {
     public static final String QUERY_DELETE_ALL = "deleteOrders";
 
