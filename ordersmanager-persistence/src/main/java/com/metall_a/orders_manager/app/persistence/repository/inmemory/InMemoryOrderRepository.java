@@ -43,6 +43,11 @@ public class InMemoryOrderRepository implements OrderRepository {
     }
 
     @Override
+    public void saveAll(List<Order> orders) {
+        orders.forEach(this::save);
+    }
+
+    @Override
     public void save(final Order order) {
         if (!orders.contains(order)) {
             order.setId(++counter);

@@ -58,4 +58,9 @@ public class OrderServiceImpl implements OrderService {
     public void deleteOrders() {
         orderRepository.deleteAll();
     }
+
+    @Override
+    public void saveOrders(List<Order> orders) {
+        orderRepository.saveAll(orders);
+    }
 }

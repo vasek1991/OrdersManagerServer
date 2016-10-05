@@ -46,4 +46,11 @@ public interface OrderService {
      * Removes all the Orders
      */
     void deleteOrders();
+
+    /**
+     * Saves all specified order instances
+     *
+     * @param orders List of Orders
+     */
+    void saveOrders(List<Order> orders);
 }

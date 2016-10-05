@@ -44,4 +44,11 @@ public interface OrderRepository {
      * Deletes all the orders
      */
     void deleteAll();
+
+    /**
+     * Saves specified order instances
+     *
+     * @param orders List of Orders
+     */
+    void saveAll(List<Order> orders);
 }

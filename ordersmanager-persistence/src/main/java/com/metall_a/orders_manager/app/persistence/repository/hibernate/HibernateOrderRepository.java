@@ -92,4 +92,29 @@ public class HibernateOrderRepository implements OrderRepository {
             }
         }
     }
+
+    @Override
+    public void saveAll(List<Order> orders) {
+        int batchSize = sessionFactory.getSessionFactoryOptions().getJdbcBatchSize();
+
+        try (Session session = sessionFactory.openSession()) {
+            Transaction tx = null;
+            try {
+                tx = session.beginTransaction();
+                for (int i = 0; i < orders.size(); i++) {
+                    session.persist(orders.get(i));
+                    if (i % batchSize == 0 || i == orders.size() - 1) {
+                        session.flush();
+                        session.clear();
+                    }
+                }
+                tx.commit();
+            } catch (Exception ex) {
+                LOGGER.error(ex.getMessage(), ex);
+                if (tx != null) {
+                    tx.rollback();
+                }
+            }
+        }
+    }
 }

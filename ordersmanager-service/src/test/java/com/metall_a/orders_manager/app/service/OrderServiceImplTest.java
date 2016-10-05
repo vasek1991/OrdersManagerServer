@@ -85,6 +85,31 @@ public class OrderServiceImplTest {
     }
 
     @Test
+    public void testSaveMultipleCitiesInBatchSuccess() {
+        int orderCount = service.findOrders().size();
+        int addedCount = 5_000;
+
+        List<Order> orders = new ArrayList<>(addedCount);
+
+        for (int i = 0; i < addedCount; i++) {
+            Order order = new Order();
+            PurchaseRequest purchaseRequest = new PurchaseRequest();
+            purchaseRequest.setCustomerName("fff+i");
+            purchaseRequest.setMaterials(Materials.INCLUDED_IN_PRICE);
+            purchaseRequest.setCustomerPhoneNumber("1" + i);
+            purchaseRequest.setMetalCutting(MetalCutting.LASER_CUTTING);
+            order.setState(State.OPEN);
+            order.setPurchaseRequest(purchaseRequest);
+
+            orders.add(order);
+        }
+        service.saveOrders(orders);
+
+        List<Order> allOrders = service.findOrders();
+        assertEquals(allOrders.size(), orderCount + addedCount);
+    }
+
+    @Test
     public void testSaveMultipleOrdersSuccess() {
         int orderCount = service.findOrders().size();
 
@@ -155,18 +180,6 @@ public class OrderServiceImplTest {
         });
     }
 
-    private Order createOrder() {
-        Order order = new Order();
-        PurchaseRequest purchaseRequest = new PurchaseRequest();
-        purchaseRequest.setCustomerName("fff");
-        purchaseRequest.setMaterials(Materials.INCLUDED_IN_PRICE);
-        purchaseRequest.setCustomerPhoneNumber("11111");
-        purchaseRequest.setMetalCutting(MetalCutting.LASER_CUTTING);
-        order.setState(State.OPEN);
-        order.setPurchaseRequest(purchaseRequest);
-        return order;
-    }
-
     @Test
     public void testSaveOrderMissingPurchaseRequestValidationExceptionThrown() {
         try {
@@ -203,5 +216,17 @@ public class OrderServiceImplTest {
         } catch (ValidationException ex) {
             assertTrue(ex.getMessage().contains("purchaseRequest.customerName:size must be between 2 and 30"));
         }
+    }
+
+    private Order createOrder() {
+        Order order = new Order();
+        PurchaseRequest purchaseRequest = new PurchaseRequest();
+        purchaseRequest.setCustomerName("fff");
+        purchaseRequest.setMaterials(Materials.INCLUDED_IN_PRICE);
+        purchaseRequest.setCustomerPhoneNumber("11111");
+        purchaseRequest.setMetalCutting(MetalCutting.LASER_CUTTING);
+        order.setState(State.OPEN);
+        order.setPurchaseRequest(purchaseRequest);
+        return order;
     }
 }
